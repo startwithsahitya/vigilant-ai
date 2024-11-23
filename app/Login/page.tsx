@@ -48,8 +48,8 @@ export default function LoginPage() {
         <Image
           src="https://drive.google.com/uc?export=view&id=1EbCAvMXa3dGZJ0lWcx2FE9p_nwzYf0wX" // Ensure this is publicly accessible
           alt="Login Icon"
-          width={236}
-          height={65}
+          width={236 / 1.2}
+          height={65 / 1.2}
         />
       </div>
 
@@ -59,6 +59,29 @@ export default function LoginPage() {
           {action === "login" ? "Login" : "Register"}
         </h1>
 
+        {/* Buttons for action selection */}
+        <div className={styles.buttonContainer}>
+          <button
+            className={`${styles.button}`}
+            onClick={() => handleButtonClick(1)}
+          >
+            Student
+          </button>
+          <button
+            className={`${styles.button}`}
+            onClick={() => handleButtonClick(2)}
+          >
+            Teacher
+          </button>
+          <button
+            className={`${styles.button}`}
+            onClick={() => handleButtonClick(3)}
+          >
+            New Register
+          </button>
+        </div>
+
+        {/* Input fields for ID and Password */}
         <div className={styles.inputContainer}>
           <label className={styles.label} htmlFor="id">
             Enter ID
@@ -85,32 +108,12 @@ export default function LoginPage() {
             placeholder="Enter your password"
             aria-label="Password input"
           />
-        </div>
 
-        <div className={styles.buttonContainer}>
-          <button
-            className={`${styles.button}`}
-            onClick={() => handleButtonClick(1)}
-          >
-            Student
-          </button>
-          <button
-            className={`${styles.button}`}
-            onClick={() => handleButtonClick(2)}
-          >
-            Teacher
-          </button>
-          <button
-            className={`${styles.button}`}
-            onClick={() => handleButtonClick(3)}
-          >
-            New Register
+          {/* Main action button */}
+          <button className={styles.mainButton} onClick={handleMainAction}>
+            {action === "login" ? "Login" : "Register"}
           </button>
         </div>
-
-        <button className={styles.mainButton} onClick={handleMainAction}>
-          {action === "login" ? "Login" : "Register"}
-        </button>
       </div>
     </main>
   );
