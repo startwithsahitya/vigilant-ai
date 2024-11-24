@@ -1,16 +1,23 @@
-"use client"; // Enables client-side rendering for this file
+"use client"; // Required since it includes client-side components
 
-import { useState } from "react";
-import Image from "next/image"; // Import the Image component from Next.js
-import styles from "./LoginPage.module.css"; // Import your styles
+import React from "react";
+import Header from "./Header";
+import styles from "./StudentHome.module.css"; 
+import Sidebar from "./Sidebar"
 
-export default function LoginPage() {
- 
-
+const StudentHome: React.FC = () => {
   return (
-    <main >
-      <h1>HelloHello</h1>
+    <main className={styles.page}>
+      <Header
+        email="raghavendra.mishra@vitbhopal.ac.in"
+        loginType="Student"
+      />
+      <Sidebar />;
+
+    
       
     </main>
   );
-}
+};
+
+export default StudentHome;

@@ -1,0 +1,45 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff; /* Light background for header */
+    border: 1px solid #dcdcdc;
+
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  .left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .email {
+    font-size: 14px;
+    color: #333; /* Neutral dark color */
+    font-weight: 500;
+  }
+  
+  .loginButton {
+    padding: 8px 12px;
+    background-color: #0070f3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .loginButton:hover {
+    background-color: #005bb5; /* Slightly darker shade on hover */
+  }
+  

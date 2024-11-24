@@ -1,0 +1,17 @@
+.page {
+    display: flex;
+    flex-direction: column; /* Aligns elements vertically */
+    justify-content: top;
+    align-items: top;
+    height: 120vh;
+    background-color: #ffffff; /* Light gray background */
+    margin: 0;
+    padding: 0px; /* Add some padding to avoid content touching screen edges */
+    max-width: 1800px; /* Constrain the page width */
+    margin: 0 auto; /* Center the page horizontally within the viewport */
+    box-sizing: border-box; /* Include padding in width calculations */
+    border: 1px solid #dcdcdc;
+    
+    
+
+  }

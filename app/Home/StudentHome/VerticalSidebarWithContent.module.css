@@ -1,0 +1,62 @@
+/* Main container to hold sidebar and content */
+.container {
+    display: flex;
+    height: 100vh;
+    background-color: #ffffff;
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    width: 200px;
+    background-color: #ffffff;
+    border-right: 1px solid #dcdcdc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+  /* Sidebar button */
+  .button {
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    background-color: #ffffff;
+    border:  1px, solid, #dcdcdc;
+    
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease, font-weight 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Active button */
+  .active {
+    background-color: #dcdcdc;
+    font-weight: bold;
+  
+    
+  }
+  
+  /* Content area */
+  .content {
+    flex: 1;
+    padding: 40px;
+    background-color: #ffffff;
+  }
+  
+  .content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .content p {
+    font-size: 18px;
+    color: #555;
+  }
+  
