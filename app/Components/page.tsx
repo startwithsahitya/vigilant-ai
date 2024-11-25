@@ -6,7 +6,7 @@ import styles from "./LoginPage.module.css"; // Import your styles
 import Button from "./name";
 import NButton from "./name";
 import ForwardButton from "./name";
-import VisualizerWithLabel from "./name";
+import EqualizerIcon from "./visualizer";
 import MessageDisplay from "./name";
 import TestCard from "./name";
 import ScoreCard from "./studentinfo";
@@ -22,7 +22,7 @@ export default function LoginPage() {
 
   return (
     <main >
-      <TestInstructions></TestInstructions>
+      <EqualizerIcon></EqualizerIcon>
     </main>
   );
 }
