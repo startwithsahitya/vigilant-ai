@@ -39,10 +39,10 @@ const QuestionList: React.FC = () => {
       style={{
         width: '372px',
         height: '716px',
-        border: '2px solid #000', // Border for visibility
+       
         padding: '16px',
-        backgroundColor: '#f5f5f5', // Light background color
-        borderRadius: '8px',
+        border: "1px solid #ccc",
+        backgroundColor: '#FAFAFA', // Light background color
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -79,8 +79,8 @@ const QuestionList: React.FC = () => {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              borderRadius: '5px',
-              backgroundColor: completedQuestions[index] ? 'green' : 'white', // Green for completed, white otherwise
+              borderRadius: '0px',
+              backgroundColor: completedQuestions[index] ? '#08A100' : 'white', // #08A100 for completed, white otherwise
               color: completedQuestions[index] ? 'white' : 'black', // Adjust text color for visibility
               fontSize: '16px',
               fontWeight: 'bold',
@@ -106,10 +106,10 @@ const QuestionList: React.FC = () => {
           style={{
             width: '132px',
             height: '44px',
-            backgroundColor: isSubmitDisabled ? '#cccccc' : 'green', // Gray when disabled, green otherwise
+            backgroundColor: isSubmitDisabled ? '#cccccc' : '#08A100', // Gray when disabled, #08A100 otherwise
             color: 'white',
             border: 'none',
-            borderRadius: '5px',
+            borderRadius: '0px',
             fontSize: '16px',
             fontWeight: 'bold',
             cursor: isSubmitDisabled ? 'not-allowed' : 'pointer',
@@ -128,7 +128,7 @@ const QuestionList: React.FC = () => {
             backgroundColor: isSubmitDisabled ? '#cccccc' : 'white',
             color: isSubmitDisabled ? '#666' : 'black', 
             border: 'none',
-            borderRadius: '5px',
+            borderRadius: '0px',
             fontSize: '16px',
             fontWeight: 'bold',
             cursor: isSubmitDisabled ? 'not-allowed' : 'pointer',

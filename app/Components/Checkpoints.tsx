@@ -34,12 +34,11 @@ const App: React.FC = () => {
         width: "244px",
         height: "208px",
         border: "1px solid #ccc",
-        borderRadius: "8px",
         padding: "16px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-around",
-        backgroundColor: "#f9f9f9",
+        backgroundColor: "#FAFAFA",
       }}
     >
       {checkpoints.map((checkpoint, index) => (
@@ -51,7 +50,7 @@ const App: React.FC = () => {
             alignItems: "center",
             padding: "4px 0",
             fontSize: "14px",
-            color: 'grey',
+            color: '#6D6D6D',
             fontFamily: "Arial, sans-serif",
           }}
         >
