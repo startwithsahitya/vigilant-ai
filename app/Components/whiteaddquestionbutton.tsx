@@ -3,28 +3,26 @@
 // components/Button.tsx
 import React from "react";
 
-const NButton: React.FC = () => {
+const Button: React.FC = () => {
   return (
-    <div
-      
-    >
+    <div>
       <button
         style={{
           width: "134px",
           height: "44px",
-          backgroundColor: "#28a745", // Green color
-          color: "white",
-          border: "none",
+          backgroundColor: "white", // White background
+          color: "black", // Black text for contrast
+          border: "1px solid #ccc", // Light gray border
           borderRadius: "6px",
           fontSize: "16px",
           cursor: "pointer",
         }}
         onClick={() => alert("Button clicked!")}
       >
-      Next
+        Add Question
       </button>
     </div>
   );
 };
 
-export default NButton;
+export default Button;

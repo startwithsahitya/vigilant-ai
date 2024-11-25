@@ -21,7 +21,7 @@ const NButton: React.FC = () => {
         }}
         onClick={() => alert("Button clicked!")}
       >
-      Next
+      Submit
       </button>
     </div>
   );
