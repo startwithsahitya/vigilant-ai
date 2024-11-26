@@ -1,13 +1,10 @@
-"use client"; // Required for client-side components
+"use client";
 
 import React from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation"; // Use App Router navigation hook
-
+import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react"; // Import signOut from next-auth
 import styles from "./Header.module.css";
-
-
- // Ensure styles are correctly imported
 
 type HeaderProps = {
   email: string;
@@ -15,16 +12,17 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({ email, loginType }) => {
-  const router = useRouter(); // App Router navigation hook
+  const router = useRouter();
 
-  const handleLogout = () => {
-    router.push("/Login"); // Navigates to Login page
+  const handleLogout = async () => {
+    // Using next-auth's signOut method to handle logout
+    await signOut({ redirect: false }); // Avoid automatic redirection after logout
+    router.push("/Login"); // Manually redirect to login page
   };
 
   return (
-    <main className="page-container2">
-    <div className={styles.header}>
-      {/* Left Section with Logo */}
+    <header className={styles.header}>
+      {/* Left Section: Logo */}
       <div className={styles.left}>
         <Image
           src="https://drive.google.com/uc?export=view&id=1EbCAvMXa3dGZJ0lWcx2FE9p_nwzYf0wX"
@@ -35,15 +33,18 @@ const Header: React.FC<HeaderProps> = ({ email, loginType }) => {
         />
       </div>
 
-      {/* Right Section with Email and Login Button */}
+      {/* Right Section: User Info */}
       <div className={styles.right}>
         <span className={styles.email}>{email}</span>
-        <button className={styles.loginButton} onClick={handleLogout}>
-          {loginType}
+        <button
+          className={styles.loginButton}
+          onClick={handleLogout}
+          aria-label={`Logout as ${loginType}`}
+        >
+          Logout ({loginType})
         </button>
       </div>
-    </div>
-    </main>
+    </header>
   );
 };
 

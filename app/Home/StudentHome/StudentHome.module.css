@@ -11,6 +11,7 @@
     margin: 0 auto; /* Center the page horizontally within the viewport */
     box-sizing: border-box; /* Include padding in width calculations */
     border: 1px solid #dcdcdc;
+    max-height: fit-content;
     
     
 

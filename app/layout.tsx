@@ -1,7 +1,10 @@
-import type { Metadata } from "next";
+// app/layout.tsx
+import { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import AuthProvider from "@/components/AuthProvider"; // Import your custom AuthProvider
 
+// Local fonts for styling
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -19,16 +22,17 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+  children, // This will include all pages
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body>
+        {/* Wrap the children with your custom AuthProvider */}
+        <AuthProvider>
+          {children} {/* This will ensure session context is available */}
+        </AuthProvider>
       </body>
     </html>
   );

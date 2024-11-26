@@ -94,6 +94,18 @@
   text-align: center;
 }
 
+.button2 {
+  padding: 10px 20px;
+  background-color: #3366ff;
+  color: #fff;
+  border: none;
+  border-radius: 0px;
+  cursor: pointer;
+  font-size: 16px;
+  flex: 1; /* Equal width for buttons */
+  text-align: center;
+}
+
 .button:hover {
   background-color: #254edb;
 }
