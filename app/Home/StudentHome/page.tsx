@@ -1,10 +1,9 @@
-// app/Home/StudentHome/page.tsx
-"use client"; // Ensure that this is a client-side component
+"use client";
 
 import React from "react";
 import { useSession } from "next-auth/react"; // For user session management
-import Header from "./Header"; // Assuming you have a Header component
-import Sidebar from "./Sidebar"; // Assuming you have a Sidebar component
+import Header from "./Header";
+import Sidebar from "./Sidebar";
 import styles from "./StudentHome.module.css";
 
 const StudentHome: React.FC = () => {
@@ -14,10 +13,12 @@ const StudentHome: React.FC = () => {
     return <div>Loading...</div>; // Placeholder during session fetch
   }
 
+  // If no session, display a message to log in
   if (!session) {
-    return <div>Please log in to access your dashboard.</div>; // Placeholder for unauthenticated users
+    return <div>Please log in to access your dashboard.</div>;
   }
 
+  // Destructure user from session to ensure type safety
   const { user } = session;
 
   if (!user) {
@@ -26,9 +27,11 @@ const StudentHome: React.FC = () => {
 
   return (
     <main className={styles.page}>
-      <Header email={user.email || "Guest"} loginType={user.role || "Student"} />
+      {/* Safely access email and role */}
+      <Header email={user.email || "Guest"} loginType={user.role || "Teacher"} />
       <div className={styles.content}>
         <Sidebar />
+        {/* Add additional content as necessary */}
       </div>
     </main>
   );

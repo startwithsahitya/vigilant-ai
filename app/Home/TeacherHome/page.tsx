@@ -4,7 +4,7 @@ import React from "react";
 import { useSession } from "next-auth/react"; // For user session management
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import styles from "./StudentHome.module.css";
+import styles from "./TeacherHome.module.css";
 
 const TeacherHome: React.FC = () => {
   const { data: session, status } = useSession();
@@ -28,7 +28,7 @@ const TeacherHome: React.FC = () => {
   return (
     <main className={styles.page}>
       {/* Safely access email and role */}
-      <Header email={user.email || "Guest"} loginType={user.role || "Student"} />
+      <Header email={user.email || "Guest"} loginType={user.role || "Teacher"} />
       <div className={styles.content}>
         <Sidebar />
         {/* Add additional content as necessary */}

@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react"; // Import signOut from next-auth
 import styles from "./Header.module.css";
 
 type HeaderProps = {
@@ -14,9 +15,9 @@ const Header: React.FC<HeaderProps> = ({ email, loginType }) => {
   const router = useRouter();
 
   const handleLogout = async () => {
-    // If you have a logout API, call it here
-    await fetch("/api/auth/logout", { method: "POST" }); // Optional API call
-    router.push("/Login");
+    // Using next-auth's signOut method to handle logout
+    await signOut({ redirect: false }); // Avoid automatic redirection after logout
+    router.push("/Login"); // Manually redirect to login page
   };
 
   return (
@@ -40,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({ email, loginType }) => {
           onClick={handleLogout}
           aria-label={`Logout as ${loginType}`}
         >
-          {loginType}
+          Logout ({loginType})
         </button>
       </div>
     </header>

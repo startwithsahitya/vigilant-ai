@@ -1,18 +1,17 @@
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+// /src/utils/authUtils.ts
+import admin from './firebaseAdmin';  // Firebase Admin setup
 
-// Hash password before saving to DB
-export const hashPassword = async (password: string) => {
-  const salt = await bcrypt.genSalt(10);
-  return bcrypt.hash(password, salt);
-};
+// Authenticate the user using Firebase ID Token from request headers
+export const authenticateUser = async (req: any) => {
+  const token = req.headers.get('Authorization')?.replace('Bearer ', '');
+  if (!token) {
+    throw new Error('No token provided');
+  }
 
-// Compare given password with stored hash
-export const verifyPassword = async (password: string, hashedPassword: string) => {
-  return bcrypt.compare(password, hashedPassword);
-};
-
-// Generate a JWT token
-export const generateToken = (userId: string) => {
-  return jwt.sign({ userId }, process.env.JWT_SECRET as string, { expiresIn: '1d' });
+  try {
+    const decodedToken = await admin.auth().verifyIdToken(token);  // Verify the ID token
+    return decodedToken.uid;  // Return the user ID (UID)
+  } catch (error) {
+    throw new Error('Unauthorized access');
+  }
 };

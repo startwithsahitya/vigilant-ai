@@ -2,11 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import {
-  handleButtonClick,
-  handleRoleSelection,
-  handleMainAction,
-} from "./functions";
+import { handleMainAction, handleButtonClick, handleRoleSelection  } from "./functions";
 import styles from "./LoginPage.module.css";
 
 export default function LoginPage() {
