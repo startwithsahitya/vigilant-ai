@@ -1,27 +1,71 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
-import { handleMainAction, handleButtonClick, handleRoleSelection  } from "./functions";
+import { useRouter } from "next/navigation";
 import styles from "./LoginPage.module.css";
 
 export default function LoginPage() {
-  const [id, setId] = useState<string>(""); // State for email
-  const [password, setPassword] = useState<string>(""); // State for Password
+  const [email, setEmail] = useState<string>(""); // State for email
+  const [password, setPassword] = useState<string>(""); // State for password
   const [action, setAction] = useState<"login" | "register">("login"); // State for action
   const [role, setRole] = useState<"teacher" | "student" | null>(null); // State for role
   const [isLoading, setIsLoading] = useState(false); // Loading state
+  const [error, setError] = useState<string | null>(null); // Error state for handling API errors
+  const router = useRouter(); // Use useRouter for redirection
 
-  const handleMainActionWrapper = async () => {
-    if (!id || !password) {
-      alert("Please provide both email and password!");
+  // Helper function to set role and action
+  const handleRoleSelection = (role: "student" | "teacher") => {
+    setRole(role);
+    setAction("login"); // Default to login when role is selected
+  };
+
+  const handleMainActionWrapper = async (e: React.FormEvent) => {
+    e.preventDefault();
+  
+    if (!email || !password || !role) {
+      setError("Please provide email, password, and select a role");
       return;
     }
-
-    setIsLoading(true);
-    await handleMainAction(id, password, action, role);
-    setIsLoading(false);
+  
+    setIsLoading(true); // Set loading state
+    setError(null); // Clear previous error
+  
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, role }), // Send email, password, and role
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        alert("Login successful");
+        // Store the JWT token in localStorage (or cookies for better security)
+        localStorage.setItem('token', data.token);
+  
+        // Redirect user based on role
+        if (role === "student") {
+          router.push("/dashboard/student"); // Redirect to student dashboard
+        } else if (role === "teacher") {
+          router.push("/dashboard/teacher"); // Redirect to teacher dashboard
+        }
+      } else {
+        setError(data.error || "An error occurred");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong");
+    } finally {
+      setIsLoading(false); // Reset loading state
+    }
   };
+  
+
+
 
   return (
     <main className={styles.pageContainer}>
@@ -43,64 +87,41 @@ export default function LoginPage() {
         <div className={styles.buttonContainer}>
           <button
             className={styles.button}
-            onClick={() => handleButtonClick(1, setAction, setRole)}
+            onClick={() => handleRoleSelection("student")}
           >
             Student
           </button>
           <button
             className={styles.button}
-            onClick={() => handleButtonClick(2, setAction, setRole)}
+            onClick={() => handleRoleSelection("teacher")}
           >
             Teacher
           </button>
-          <button
-            className={styles.button}
-            onClick={() => handleButtonClick(3, setAction, setRole)}
-          >
-            New Register
-          </button>
         </div>
-
-        {/* Role Selection for Registration */}
-        {action === "register" && !role && (
-          <div className={styles.roleSelection}>
-            <p>Please select a role:</p>
-            <div className={styles.buttonContainer}>
-              <button
-                className={styles.button2}
-                onClick={() => handleRoleSelection("student", setRole)}
-              >
-                Student
-              </button>
-              <button
-                className={styles.button2}
-                onClick={() => handleRoleSelection("teacher", setRole)}
-              >
-                Teacher
-              </button>
-            </div>
-          </div>
-        )}
 
         {/* Role Information for Login */}
         {action === "login" && role && (
-          <p className={styles.roleInfo}>Logging in as: <strong>{role}</strong></p>
+          <p className={styles.roleInfo}>
+            Logging in as: <strong>{role}</strong>
+          </p>
         )}
 
         {/* Login/Register Form */}
         {(action === "login" || role) && (
-          <div className={styles.inputContainer}>
-            <label className={styles.label} htmlFor="id">
+          <form className={styles.inputContainer} onSubmit={handleMainActionWrapper}>
+            <label className={styles.label} htmlFor="email">
               Enter Email
             </label>
             <input
-              id="id"
+              id="email"
               className={styles.input}
-              type="text"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
+              required
             />
+
             <label className={styles.label} htmlFor="password">
               Password
             </label>
@@ -111,17 +132,21 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
+              required
             />
 
             {/* Submit Button */}
             <button
               className={styles.mainButton}
-              onClick={handleMainActionWrapper}
+              type="submit"
               disabled={isLoading}
             >
-              {isLoading ? "Processing..." : action === "login" ? "Login" : "Register"}
+              {isLoading ? "Processing..." : "Login"}
             </button>
-          </div>
+
+            {/* Show Error Message */}
+            {error && <p className={styles.errorMessage}>{error}</p>}
+          </form>
         )}
       </div>
     </main>

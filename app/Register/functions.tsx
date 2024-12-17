@@ -1,3 +1,5 @@
+import bcrypt from 'bcrypt';
+import { User } from '@/app/types/user'; 
 
 export const onButtonClick = (
   buttonId: number,
@@ -5,13 +7,13 @@ export const onButtonClick = (
   setRole: (role: 'teacher' | 'student' | null) => void
 ) => {
   if (buttonId === 1) {
-    setActionType('login');
+    setActionType('register');
     setRole('student');
   } else if (buttonId === 2) {
-    setActionType('login');
+    setActionType('register');
     setRole('teacher');
   } else {
-    setActionType('login');
+    setActionType('register');
     setRole(null);
   }
 };
