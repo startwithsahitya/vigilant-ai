@@ -44,6 +44,7 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid #ddd;
 }
 
 .placeholder {
@@ -56,6 +57,7 @@
   justify-content: center;
   color: #aaa;
   font-size: 14px;
+  border: 2px dashed #ddd;
 }
 
 .uploadInput {
@@ -66,6 +68,10 @@
   height: 100%;
   opacity: 0;
   cursor: pointer;
+}
+
+.uploadInput:disabled {
+  cursor: not-allowed;
 }
 
 .profileFields {
@@ -93,7 +99,12 @@
   border-radius: 6px;
   font-size: 14px;
   background-color: #fafafa;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.fieldGroup input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
 }
 
 .fieldGroup input:focus {
@@ -101,19 +112,23 @@
   border-color: #4caf50;
 }
 
-.saveButton {
+.saveButton,
+.editButton {
   display: block;
   width: 100%;
   padding: 14px;
-  background-color: #4caf50;
-  color: white;
   font-size: 16px;
   font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.saveButton {
+  background-color: #4caf50;
+  color: white;
 }
 
 .saveButton:hover {
@@ -134,18 +149,18 @@
   background-color: #45a049;
 }
 
-.incompleteMessage {
-  color: #ff0000;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
+.editButton {
+  background-color: #007bff;
+  color: white;
 }
 
-.completedMessage {
-  color: #4caf50;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
+.editButton:hover {
+  background-color: #0056b3;
+}
+
+.editButton:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
 }
 
 .message {
@@ -154,4 +169,18 @@
   color: #333;
   text-align: center;
   font-weight: 500;
+}
+
+.incompleteMessage {
+  color: #ff6b6b;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.completedMessage {
+  color: #4caf50;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
 }

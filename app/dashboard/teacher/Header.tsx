@@ -15,9 +15,18 @@ const Header: React.FC<HeaderProps> = ({ email, loginType }) => {
   const router = useRouter();
 
   const handleLogout = async () => {
-    // Using next-auth's signOut method to handle logout
-    await signOut({ redirect: false }); // Avoid automatic redirection after logout
-    router.push("/Login"); // Manually redirect to login page
+    try {
+      // Using next-auth's signOut method to handle logout
+      await signOut({ redirect: false }); // Avoid automatic redirection after logout
+
+      // Remove the JWT token from localStorage to ensure the user is logged out
+      localStorage.removeItem("token");
+
+      // Manually redirect to the login page after logout
+      router.push("/Not Access");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   return (

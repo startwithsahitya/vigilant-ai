@@ -1,14 +1,20 @@
 import { useState } from "react";
 import styles from "./VerticalSidebarWithContent.module.css";
+import ProfileUI from "./profile";
 
-export default function VerticalSidebarWithContent() {
-  const [selected, setSelected] = useState("Profile"); // Tracks the selected section
+interface SidebarProps {
+  email: string; // Prop passed from the parent component
+}
 
-  // Content for each section
+export default function VerticalSidebarWithContent({ email }: SidebarProps) {
+  console.log("Rendering VerticalSidebarWithContent with email:", email); // Debugging log
+
+  const [selected, setSelected] = useState("Profile");
+
   const renderContent = () => {
     switch (selected) {
       case "Profile":
-        return <p>Welcome to the Profile section! Here you can view and edit your profile details.</p>;
+        return <ProfileUI email={email} />; // Pass email to ProfileUI
       case "Test":
         return <p>Take a test or review previous tests in the Test section!</p>;
       case "Results":
@@ -20,35 +26,26 @@ export default function VerticalSidebarWithContent() {
 
   return (
     <div className={styles.container}>
-      {/* Sidebar */}
       <div className={styles.sidebar}>
         <button
-          className={`${styles.button} ${
-            selected === "Profile" ? styles.active : ""
-          }`}
+          className={`${styles.button} ${selected === "Profile" ? styles.active : ""}`}
           onClick={() => setSelected("Profile")}
         >
           Profile
         </button>
         <button
-          className={`${styles.button} ${
-            selected === "Test" ? styles.active : ""
-          }`}
+          className={`${styles.button} ${selected === "Test" ? styles.active : ""}`}
           onClick={() => setSelected("Test")}
         >
           Test
         </button>
         <button
-          className={`${styles.button} ${
-            selected === "Results" ? styles.active : ""
-          }`}
+          className={`${styles.button} ${selected === "Results" ? styles.active : ""}`}
           onClick={() => setSelected("Results")}
         >
           Results
         </button>
       </div>
-
-      {/* Main Content */}
       <div className={styles.content}>
         <h1>{selected}</h1>
         {renderContent()}

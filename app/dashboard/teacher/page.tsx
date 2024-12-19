@@ -46,13 +46,8 @@ const TeacherHome: React.FC = () => {
       {/* Header with email and role */}
       <Header email={email} loginType={role || "guest"} />
       <div className={styles.content}>
-        <Sidebar />
-        <section className={styles.dashboardContent}>
-          <h2>Welcome to your Teacher Dashboard</h2>
-          <div className={styles.additionalContent}>
-            <p>This is where your teacher-specific content will appear.</p>
-          </div>
-        </section>
+        <Sidebar email={email} />
+        
       </div>
     </main>
   );

@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { JWT } from "next-auth/jwt"; // Import JWT type
-import { Session } from "next-auth"; // Import Session type
+import { JWT } from "next-auth/jwt"; 
+import { Session } from "next-auth"; 
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -27,7 +27,7 @@ export const authOptions: NextAuthOptions = {
           const user = await response.json();
 
           if (response.ok && user) {
-            return user.user; // Return user object if valid
+            return user.user;
           }
 
           return null;
@@ -60,7 +60,7 @@ export const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: "/Login", // Custom login page
+    signIn: "/Login", 
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
