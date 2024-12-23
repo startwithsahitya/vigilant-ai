@@ -1,6 +1,11 @@
+// VerticalSidebarWithContent.tsx
+"use client";
+
 import { useState } from "react";
 import styles from "./VerticalSidebarWithContent.module.css";
 import ProfileUI from "./profile";
+import StudentDashboard from "./StudentDashboard";
+import ResultPage from "./Resultpage";
 
 interface SidebarProps {
   email: string; // Prop passed from the parent component
@@ -16,9 +21,9 @@ export default function VerticalSidebarWithContent({ email }: SidebarProps) {
       case "Profile":
         return <ProfileUI email={email} />; // Pass email to ProfileUI
       case "Test":
-        return <p>Take a test or review previous tests in the Test section!</p>;
+        return <StudentDashboard email={email} />; // Pass email to StudentDashboard
       case "Results":
-        return <p>View your results and progress here in the Results section.</p>;
+        return <ResultPage email = {email}/>;
       default:
         return <p>Select an option from the sidebar to see content.</p>;
     }

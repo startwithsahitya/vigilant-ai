@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs'; // For password hashing
 import { query } from '../../lib/mysql'; // Import the query function
-import { RowDataPacket } from 'mysql2'; // Import RowDataPacket type from mysql2
 
 export async function POST(req: Request) {
   try {
@@ -28,8 +27,6 @@ export async function POST(req: Request) {
 
     // Check if the email already exists in the corresponding table
     const queryResult = await query(`SELECT * FROM ${table} WHERE email = ?`, [email]);
-
-    // Accessing rows directly from the result
     const rows = queryResult as any[];
 
     if (rows.length > 0) {
@@ -42,9 +39,9 @@ export async function POST(req: Request) {
     // Hash the password before saving it
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Insert the new user into the correct table based on their role
+    // Insert the new user into the correct table with NULL for 'name'
     await query(
-      `INSERT INTO ${table} (email, password) VALUES (?, ?)`,
+      `INSERT INTO ${table} (email, password, name) VALUES (?, ?, NULL)`,
       [email, hashedPassword]
     );
 

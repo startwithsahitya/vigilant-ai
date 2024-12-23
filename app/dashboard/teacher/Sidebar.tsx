@@ -1,6 +1,9 @@
 import { useState } from "react";
 import styles from "./VerticalSidebarWithContent.module.css";
 import ProfileUI from "./profile";
+import Results from "./Resultpage";
+import TestInputForm from "./TeacherDashboard";
+import ResultPage from "./Resultpage";
 
 interface SidebarProps {
   email: string; // Prop passed from the parent component
@@ -15,10 +18,10 @@ export default function VerticalSidebarWithContent({ email }: SidebarProps) {
     switch (selected) {
       case "Profile":
         return <ProfileUI email={email} />; // Pass email to ProfileUI
-      case "Test":
-        return <p>Take a test or review previous tests in the Test section!</p>;
+      case "Create Test":
+        return <TestInputForm email={email}/>
       case "Results":
-        return <p>View your results and progress here in the Results section.</p>;
+        return <ResultPage email={email}/>;
       default:
         return <p>Select an option from the sidebar to see content.</p>;
     }
@@ -34,10 +37,10 @@ export default function VerticalSidebarWithContent({ email }: SidebarProps) {
           Profile
         </button>
         <button
-          className={`${styles.button} ${selected === "Test" ? styles.active : ""}`}
-          onClick={() => setSelected("Test")}
+          className={`${styles.button} ${selected === "Create Test" ? styles.active : ""}`}
+          onClick={() => setSelected("Create Test")}
         >
-          Test
+          CreateTest
         </button>
         <button
           className={`${styles.button} ${selected === "Results" ? styles.active : ""}`}

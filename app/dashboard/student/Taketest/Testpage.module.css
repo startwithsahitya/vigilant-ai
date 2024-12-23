@@ -1,0 +1,107 @@
+.testPageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f7f9fc;
+  font-family: Arial, sans-serif;
+}
+
+.testContent {
+  width: 90%;
+  max-width: 600px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.testHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.testHeader h2 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.testQuestion {
+  margin-bottom: 20px;
+}
+
+.questionCard {
+  margin: 10px 0;
+}
+
+.question {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.radioInput {
+  accent-color: #007bff;
+  cursor: pointer;
+}
+
+.optionLabel {
+  font-size: 0.9rem;
+  color: #555;
+  cursor: pointer;
+}
+
+.navigationButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.navigationButton,
+.submitButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.navigationButton {
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.navigationButton:hover {
+  background-color: #0056b3;
+}
+
+.submitButton {
+  background-color: #28a745;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #1e7e34;
+}
+
+.navigationButton:disabled,
+.submitButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

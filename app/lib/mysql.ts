@@ -14,12 +14,18 @@ export const pool = mysql.createPool({
 
 // Query function to interact with the database
 export const query = async (sql: string, values: any[] = []) => {
-  const [results, fields] = await pool.execute(sql, values);
+  try {
+    // Execute the query
+    const [results, fields] = await pool.execute(sql, values);
 
-  // Type guard to check if results is an array (RowDataPacket[])
-  if (Array.isArray(results)) {
-    return results as mysql.RowDataPacket[];
-  } else {
-    return results as mysql.OkPacket;
+    // Type guard to check if results is an array (RowDataPacket[])
+    if (Array.isArray(results)) {
+      return results as mysql.RowDataPacket[];
+    } else {
+      return results as mysql.OkPacket;
+    }
+  } catch (error) {
+    console.error('Error executing query:', error);
+    throw new Error('Database query failed');
   }
 };
